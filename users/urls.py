@@ -8,7 +8,7 @@ from django.urls import path, include
 from .views import register, login_view, user_logout, dashboard, upload_document, home
 from .views import save_print_order, create_payment, verify_payment
 # handler404 = custom_404_view
-from django.conf.urls import handler404
+# from django.conf.urls import handler404
 # from .views import custom_404
 from django.conf.urls import handler404
 from .views import custom_404_view  # Replace 'your_app' with your app name
