@@ -518,7 +518,7 @@ import time
 
 import subprocess
 import os
-GS_PATH = "/opt/ghostscript/gs"  # Use downloaded binary
+GS_PATH = "/tmp/ghostscript/gs"  # Use the new path
 def get_pdf_page_count(file_path):
     """Get the number of pages in a PDF file using Ghostscript (Linux-Compatible)."""
     
@@ -527,7 +527,7 @@ def get_pdf_page_count(file_path):
         return None
 
     gs_command = [
-        GS_PATH,  # Use the downloaded binary
+        GS_PATH,
         "-q", "-dSAFER", "-dNOPAUSE", "-dBATCH",
         "-sDEVICE=pdfwrite",
         "-sOutputFile=/dev/null",
