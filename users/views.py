@@ -478,9 +478,9 @@ import os
 import time
 
 def get_pdf_page_count(file_path):
-    """Get the number of pages in a PDF file using Ghostscript."""
+    """Get the number of pages in a PDF file using Ghostscript (Linux-Compatible)."""
     gs_command = [
-        "C:\\Program Files\\gs\\gs10.04.0\\bin\\gswin64c.exe",
+        "gs",  # Use 'gs' instead of 'gswin64c.exe' for Linux
         "-q", "-dNODISPLAY", "-c",
         f"({file_path}) (r) file runpdfbegin pdfpagecount = quit"
     ]
@@ -492,12 +492,12 @@ def get_pdf_page_count(file_path):
         return None
 
 def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
-    """Print a PDF with custom settings using Ghostscript on Windows"""
-
+    """Print a PDF with custom settings using Ghostscript on Linux"""
+    
     gs_command = [
-        "C:\\Program Files\\gs\\gs10.04.0\\bin\\gswin64c.exe",  # Update path if needed
-        "-dNOPAUSE", "-dBATCH", "-sDEVICE=mswinpr2",
-        f"-sOutputFile=%printer%{printer_name}" if printer_name else "-sOutputFile=%printer%",
+        "gs",  # Use 'gs' instead of 'gswin64c.exe'
+        "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",
+        f"-sOutputFile={file_path}_printed.pdf",  # Save output instead of printing
         file_path
     ]
 
@@ -514,6 +514,31 @@ def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
 
     # Run the command
     subprocess.run(gs_command, shell=True)
+
+
+# def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
+#     """Print a PDF with custom settings using Ghostscript on Windows"""
+
+#     gs_command = [
+#         "C:\\Program Files\\gs\\gs10.04.0\\bin\\gswin64c.exe",  # Update path if needed
+#         "-dNOPAUSE", "-dBATCH", "-sDEVICE=mswinpr2",
+#         f"-sOutputFile=%printer%{printer_name}" if printer_name else "-sOutputFile=%printer%",
+#         file_path
+#     ]
+
+#     # Set Black & White mode
+#     if color_mode == "bw":
+#         gs_command.insert(-1, "-sColorConversionStrategy=Gray")
+#         gs_command.insert(-1, "-dProcessColorModel=/DeviceGray")
+
+#     # Set Duplex mode
+#     if duplex == "double":
+#         gs_command.insert(-1, "-dDuplex=true")
+#     elif duplex == "single":
+#         gs_command.insert(-1, "-dDuplex=false")
+
+#     # Run the command
+#     subprocess.run(gs_command, shell=True)
 
 from django.http import JsonResponse
 import subprocess
