@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - SmartDocX</title>
+    <link rel="stylesheet" href="/static/styles/home.css">
+    <link rel="stylesheet" href="/static/styles/upload_doc.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Smart<span>DocX</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="home" class="btn-secondary">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="payment-main">
+        <div class="payment-container">
+            <div class="payment-header">
+                <h1>Complete Your Order</h1>
+                <p>Upload your documents and make payment</p>
+            </div>
+
+            <div class="payment-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Upload</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Options</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Payment</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">Confirm</div>
+                </div>
+            </div>
+            <!-- 
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %} -->
+            <input type="hidden" name="form_type" value="doc_cust">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+            <!-- Step 1: Upload Documents -->
+            <div class="payment-step-content active" id="step1">
+                <h2>Upload Your Documents</h2>
+                <div class="upload-container">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Drag & Drop Files Here</h3>
+                        <p>or</p>
+                        <label for="fileUpload" class="btn-primary">Browse Files</label>
+                        {% comment %} <input type="file" id="fileUpload" name="file" hidden> {% endcomment %}
+                        <input type="file" id="fileInput" multiple accept="application/pdf">
+
+                        <p class="upload-info">Supported formats: PDF, DOCX, JPG, PNG (Max: 20MB per file)</p>
+                    </div>
+                    <div class="uploaded-files" id="uploadedFiles">
+                        <h3>Uploaded Files</h3>
+                        <ul class="file-list" id="fileList">
+                            <!-- Files will be added here dynamically -->
+                        </ul>
+                    </div>
+
+                </div>
+                <label>Number of Pages:</label>
+                <input type="number" id="pageCount" readonly>
+                <div class="options-form">
+                    <div class="form-group">
+                        <label for="paperSize">Paper Size</label>
+                        <select id="paperSize" name="paperSize">
+                            <option value="a4">A4 (210 × 297 mm)</option>
+                            <option value="letter">Letter (8.5 × 11 in)</option>
+                            <option value="legal">Legal (8.5 × 14 in)</option>
+                            <option value="a3">A3 (297 × 420 mm)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="paperType">Paper Type</label>
+                        <select id="paperType" name="paperType" onchange="calculateCost()">
+                            <option value="standard">Standard (80 gsm)</option>
+                            <option value="premium">Premium (100 gsm)</option>
+                            <option value="glossy">Glossy (120 gsm)</option>
+                            <option value="matte">Matte (120 gsm)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="printColor">Print Color</label>
+                        <select id="printColor" name="printColor" onchange="calculateCost()">
+                            <option value="bw">Black & White</option>
+                            <option value="color">Color</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="printSides">Print Sides</label>
+                        <select id="printSides" name="printSides" onchange="calculateCost()">
+                            <option value="single">Single-sided</option>
+                            <option value="double">Double-sided</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="binding">Binding</label>
+                        <select id="binding" name="binding" onchange="calculateCost()">
+                            <option value="none" selected>Staple</option>
+                            <!-- <option value="none">None</option> -->
+                            <option value="spiral">Spiral Binding</option>
+                            <option value="hardcover">Hardcover Binding</option>
+                        </select>
+                    </div>
+                    <!-- Hidden input field for Order ID -->
+                    <input type="hidden" id="orderIDInput" name="order_id">
+
+                    <!-- Display the generated Order ID (optional) -->
+                    <p id="orderIdDisplay"></p>
+                    <div class="form-group">
+                        <label for="copies">Number of Copies</label>
+                        <input type="number" name="copies" id="copies" min="1" value="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <div class="input-group" style="position: relative;
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: stretch;
+                        width: 100%;">
+                            <span class="input-group-text" style="display: flex;
+                                align-items: center;
+                                padding: .375rem .75rem;
+                                font-size: 1rem;
+                                font-weight: 400;
+                                line-height: 1.5;
+                                text-align: center;
+                                white-space: nowrap;
+                                background-color: rgb(205, 205, 205);
+                                border: 0;
+                                border-radius: 5px 0 0px 5px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                    <path
+                                        d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <input type="number" class="form-control" id="amount" name="amount" placeholder="00.0"
+                                required readonly disabled style="position: relative;
+                                flex: 1 1 auto;
+                                width: 1%;
+                                min-width: 0;
+                                border-radius: 0px;" />
+                            <button type="button" style="width: 100px;
+                            border-radius: 0px 5px 5px 0px;
+                            border: 1px;
+                            font-size: 18px;" id="pay">Pay Now</button>
+                            <style>
+                                #pay:hover {
+                                    font-size: 25px;
+                                }
+                            </style>
+
+                        </div>
+                    </div>
+                    <input type="text" id="transaction_id" value="none" hidden>
+                    <input type="text" id="unique_url" value="{{ unique_url }}" hidden>
+                    <input type="text" id="total_pages" value='22' hidden>
+
+                    <!-- <label>Total Cost:</label> -->
+                    <!-- <input type="text" id="totalCost" readonly> -->
+
+
+                </div>
+                <div class="step-buttons">
+                    <!-- <button class="btn-secondary"
+                            onclick="window.location.href='/upload/{{unique_url}}'">Cancel</button>
+                        <button class="btn-primary next-step" data-step="2">Next: Choose Options</button> -->
+                    <button class="btn-secondary" onclick="showPreviousStep()">Back</button>
+                    <button class="btn-primary" id="submitOrder">Submit Order</button>
+                </div>
+
+            </div>
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+            <!-- <form id="paymentForm" method="POST">
+                {% csrf_token %} -->
+            <!-- <input type="hidden" name="form_type" value="payment"> -->
+            <!-- <input type="number" id="amount" placeholder="Enter Amount" />
+                <button type="submit" id="pay">Pay Now</button> -->
+            <!-- </form> -->
+            <script>
+                document.getElementById("fileInput").addEventListener("change", function (event) {
+                    const file = event.target.files[0];
+                    if (file && file.type === "application/pdf") {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = function () {
+                            const typedArray = new Uint8Array(this.result);
+                            pdfjsLib.getDocument(typedArray).promise.then(pdf => {
+                                const pageCount = pdf.numPages;
+                                document.getElementById("pageCount").value = pageCount;
+                                calculateCost();  // Auto-update cost when pages are counted
+                            }).catch(error => console.error("Error loading PDF:", error));
+                        };
+
+                        fileReader.readAsArrayBuffer(file);
+                    } else {
+                        alert("Please upload a valid PDF file.");
+                    }
+                });
+
+                function calculateCost() {
+                    let pages = parseInt(document.getElementById("pageCount").value) || 0;
+                    let printType = document.getElementById("printColor").value;  // B/W or Color
+                    let sideType = document.getElementById("printSides").value;  // Single or Double
+                    let bindingType = document.getElementById("binding").value;  // Binding options
+
+                    let costPerPage = 0;
+
+                    // Printing price logic
+                    if (printType === "bw") {
+                        costPerPage = sideType === "single" ? 5 : 4; // B/W single = 5, double = 4
+                    } else if (printType === "color") {
+                        costPerPage = sideType === "single" ? 10 : 8; // Color single = 10, double = 8
+                    }
+
+                    let totalCost = pages * costPerPage;
+
+                    // Binding cost
+                    if (bindingType === "spiral") {
+                        totalCost += 20;  // Spiral binding cost
+                    } else if (bindingType === "hardcover") {
+                        totalCost += 50;  // Hardcover binding cost
+                    }
+                    console.log("This is total cost : ", totalCost)
+                    // alert("This is total cost of document : ", totalCost)
+
+                    // Show the total cost
+                    document.getElementById("amount").value = totalCost;
+                }
+
+            </script>
+
+            <script>
+                // submitOrder.disabled = true;
+                // submitOrder.style.display = "none";
+                document.addEventListener("DOMContentLoaded", function () {
+                    document.getElementById("submitOrder").addEventListener("click", function (event) {
+                        event.preventDefault();
+
+                        let fileInput = document.getElementById("fileInput");
+                        if (!fileInput || fileInput.files.length === 0) {
+                            alert("Please upload a file.");
+                            return;
+                        }
+
+                        let formData = new FormData();
+                        formData.append("file", fileInput.files[0]);  // Attach the file
+                        formData.append("amount", document.getElementById("amount").value.trim());
+                        formData.append("pageSize", document.getElementById("paperSize").value);
+                        formData.append("paperType", document.getElementById("paperType").value);
+                        formData.append("printColor", document.getElementById("printColor").value);
+                        formData.append("printSides", document.getElementById("printSides").value);
+                        formData.append("binding", document.getElementById("binding").value);
+                        formData.append("copies", document.getElementById("copies").value);
+                        formData.append("transaction_id", document.getElementById("transaction_id").value);
+                        formData.append("order_id", document.getElementById("orderIDInput").value);
+                        formData.append("unique_url", document.getElementById("unique_url").value);
+                        // formData.append("total_pages", document.getElementById("total_pages").value);
+
+                        let id = document.getElementById("orderIDInput").value
+                        console.log("this is order id : ", id)
+
+                        let csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+                        let unique_url = document.getElementById("unique_url").value;
+                        let uploadUrl = `/upload/${unique_url}/`;
+
+                        fetch(uploadUrl, {
+                            method: "POST",
+                            body: formData,  // Send formData instead of JSON
+                            headers: {
+                                "X-CSRFToken": csrfToken
+                            }
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log("Server Response:", data);
+                                if (data.status === "success") {
+                                    alert("Order Submitted Successfully! File saved at: " + data.file_path);
+                                    window.location.href = "/";
+                                } else {
+                                    alert("Order Submission Failed. Errors: " + JSON.stringify(data.errors));
+                                }
+                            })
+                            .catch(err => {
+                                console.error("Fetch error:", err);
+                                alert("An error occurred. Check console for details.");
+                            });
+                    });
+
+
+
+                    function generateOrderID(uniqueURL) {
+                        // Generate a random 4 to 5 character alphanumeric string
+                        let length = Math.floor(Math.random() * 2) + 4; // Randomly choose 4 or 5 characters
+                        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                        let orderID = "";
+
+                        for (let i = 0; i < length; i++) {
+                            orderID += characters.charAt(Math.floor(Math.random() * characters.length));
+                        }
+
+                        // Combine Django unique_url and Order ID
+                        let fullOrderID = `${uniqueURL}-${orderID}`;
+
+                        // Store in hidden input field
+                        document.getElementById("orderIDInput").value = fullOrderID;
+
+                        // Display Order ID (optional)
+                        document.getElementById("orderIdDisplay").innerText = `Your Order ID: ${fullOrderID}`;
+                    }
+
+                    // Get unique_url from Django template
+                    let uniqueURL = "{{ unique_url }}";  // Django variable
+
+                    // Generate order ID when page loads
+                    generateOrderID(uniqueURL);
+                });
+
+
+
+                document.getElementById("pay").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    let amountInput = document.getElementById("amount");
+                    let amount = amountInput.value.trim();
+                    let csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+                    let submitOrder = document.getElementById("submitOrder");
+                    let transaction_id = document.getElementById("transaction_id")
+
+
+
+
+                    if (!amount || amount <= 0) {
+                        alert("Please enter a valid amount.");
+                        return;
+                    }
+
+                    fetch("/pay/", {
+                        method: "POST",
+                        body: new URLSearchParams({ amount: amount }),
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "X-CSRFToken": csrfToken
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(order => {
+                            var options = {
+                                "key": "{{ key }}",
+                                "amount": order.amount,
+                                "currency": "INR",
+                                "name": "PrintEase",
+                                "description": "Order Payment",
+                                "order_id": order.id,
+                                "handler": function (response) {
+                                    let paidAmount = order.amount / 100; // Convert paisa to INR
+                                    response.amount = paidAmount;
+
+                                    fetch("/verify-payment/", {
+                                        method: "POST",
+                                        body: JSON.stringify(response),
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "X-CSRFToken": csrfToken
+                                        }
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.status === "success") {
+                                                alert("Payment Successful! Transaction ID: " + data.payment_id + ". Amount: ₹" + paidAmount);
+                                                amountInput.style.backgroundColor = "lightgreen";
+                                                amountInput.value = paidAmount; // Show paid amount
+                                                amountInput.disabled = true; // Disable input after payment
+                                                // submitOrder.style.display = "block"; // Show submit button
+                                                submitOrder.disabled = false; // Enable submit button
+                                                transaction_id.value = data.payment_id;
+
+                                            } else {
+                                                alert("Payment Verification Failed. Please try again.");
+                                            }
+                                        });
+                                }
+                            };
+                            var rzp = new Razorpay(options);
+                            rzp.open();
+                        })
+                        .catch(error => console.error("Error:", error));
+                });
+            </script>
+
+
+
+            <!-- </form> -->
+
+            <!-- Step 2: Choose Options -->
+            <div class="payment-step-content" id="step2">
+                <!-- <h2>Choose Printing Options</h2> -->
+                <h2>Payment Information</h2>
+                <div class="options-container">
+                    <!-- <div class="options-form">
+                            <div class="form-group">
+                                <label for="paperSize">Paper Size</label>
+                                <select id="paperSize" name="paperSize">
+                                    <option value="a4">A4 (210 × 297 mm)</option>
+                                    <option value="letter">Letter (8.5 × 11 in)</option>
+                                    <option value="legal">Legal (8.5 × 14 in)</option>
+                                    <option value="a3">A3 (297 × 420 mm)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="paperType">Paper Type</label>
+                                <select id="paperType" name="paperType">
+                                    <option value="standard">Standard (80 gsm)</option>
+                                    <option value="premium">Premium (100 gsm)</option>
+                                    <option value="glossy">Glossy (120 gsm)</option>
+                                    <option value="matte">Matte (120 gsm)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="printColor">Print Color</label>
+                                <select id="printColor" name="printColor">
+                                    <option value="bw">Black & White</option>
+                                    <option value="color">Color</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="printSides">Print Sides</label>
+                                <select id="printSides" name="printSides">
+                                    <option value="single">Single-sided</option>
+                                    <option value="double">Double-sided</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="binding">Binding</label>
+                                <select id="binding" name="binding">
+                                    <option value="none">None</option>
+                                    <option value="staple">Staple</option>
+                                    <option value="spiral">Spiral Binding</option>
+                                    <option value="hardcover">Hardcover Binding</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="copies">Number of Copies</label>
+                                <input type="number" name="copies" id="copies" min="1" value="1">
+                            </div>
+                        </div> -->
+                    <div class="options-summary">
+                        <h3>Order Summary</h3>
+                        <div class="summary-item">
+                            <span>Document 1.pdf (12 pages)</span>
+                            <span>$1.20</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Document 2.docx (8 pages)</span>
+                            <span>$0.80</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Premium Paper</span>
+                            <span>$2.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Color Printing</span>
+                            <span>$5.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Spiral Binding</span>
+                            <span>$3.50</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-item total">
+                            <span>Total</span>
+                            <span>$12.50</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-buttons">
+                    <button class="btn-secondary prev-step" data-step="1">Previous</button>
+                    <button class="btn-primary next-step" data-step="3">Next: Payment</button>
+                </div>
+            </div>
+
+
+            <!-- Step 3: Payment -->
+            <div class="payment-step-content" id="step3">
+                <h2>Payment Information</h2>
+                <div class="confirmation-content">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Order Confirmed!</h2>
+                    <p>Your order has been successfully placed.</p>
+                    <div class="order-details">
+                        <h3>Order Details</h3>
+                        <div class="order-detail">
+                            <span>Order Number:</span>
+                            <span>ORD-2025-001</span>
+                        </div>
+                        <div class="order-detail">
+                            <span>Order Date:</span>
+                            <span>March 1, 2025</span>
+                        </div>
+                        <div class="order-detail">
+                            <span>Total Amount:</span>
+                            <span>$12.50</span>
+                        </div>
+                        <div class="order-detail">
+                            <span>Payment Method:</span>
+                            <span>Credit Card</span>
+                        </div>
+                        <div class="order-detail">
+                            <span>Estimated Completion:</span>
+                            <span>March 3, 2025</span>
+                        </div>
+                    </div>
+                    <p class="confirmation-message">We've sent a confirmation email to your registered email address.
+                        You can track your order status in your account dashboard.</p>
+                    <!-- <div class="confirmation-buttons">
+                            <button class="btn-secondary"
+                                onclick="window.location.href='/upload_document/{{unique_url}}'">Back to Again</button>
+                            <button class="btn-primary" onclick="window.location.href='/'">Track Order</button>
+                        </div> -->
+                </div>
+                <!-- <div class="payment-options">
+                    <div class="payment-tabs">
+                        <button class="payment-tab active" data-tab="card">Credit Card</button>
+                        <button class="payment-tab" data-tab="paypal">PayPal</button>
+                        <button class="payment-tab" data-tab="bank">Bank Transfer</button>
+                    </div>
+                    <div class="payment-tab-content active" id="card-tab">
+                        <form class="payment-form">
+                            <div class="form-group">
+                                <label for="cardName">Cardholder Name</label>
+                                <input type="text" id="cardName" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <div class="card-input">
+                                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                                    <div class="card-icons">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <i class="fab fa-cc-mastercard"></i>
+                                        <i class="fab fa-cc-amex"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expDate">Expiration Date</label>
+                                    <input type="text" id="expDate" placeholder="MM/YY" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="123" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="billingAddress">Billing Address</label>
+                                <input type="text" id="billingAddress" placeholder="Street Address" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" id="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="zipCode">Zip Code</label>
+                                    <input type="text" id="zipCode" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country" required>
+                                    <option value="us">United States</option>
+                                    <option value="ca">Canada</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="au">Australia</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="payment-tab-content" id="paypal-tab">
+                        <div class="paypal-content">
+                            <img src="https://placehold.co/200x80/0a2463/white?text=PayPal" alt="PayPal">
+                            <p>You will be redirected to PayPal to complete your payment.</p>
+                            <button class="btn-paypal">Pay with PayPal</button>
+                        </div>
+                    </div>
+                    <div class="payment-tab-content" id="bank-tab">
+                        <div class="bank-content">
+                            <h3>Bank Transfer Details</h3>
+                            <p>Please transfer the total amount to the following bank account:</p>
+                            <div class="bank-details">
+                                <div class="bank-detail">
+                                    <span>Bank Name:</span>
+                                    <span>SmartBank</span>
+                                </div>
+                                <div class="bank-detail">
+                                    <span>Account Name:</span>
+                                    <span>SmartDocX Inc.</span>
+                                </div>
+                                <div class="bank-detail">
+                                    <span>Account Number:</span>
+                                    <span>1234567890</span>
+                                </div>
+                                <div class="bank-detail">
+                                    <span>Routing Number:</span>
+                                    <span>987654321</span>
+                                </div>
+                                <div class="bank-detail">
+                                    <span>Reference:</span>
+                                    <span>ORD-2025-001</span>
+                                </div>
+                            </div>
+                            <p class="bank-note">Please include the reference number in your transfer. Your order will be processed once payment is confirmed.</p>
+                        </div>
+                    </div>
+                </div> -->
+                <input type="text" name="payment" value="22" hidden>
+                <div class="step-buttons">
+                    <button class="btn-secondary prev-step" data-step="2">Previous</button>
+                    <button class="btn-primary next-step" id="uploadButton" type="submit" data-step="4">Complete
+                        Order</button>
+                </div>
+            </div>
+            <!-- </form> -->
+
+            <!-- Step 4: Confirmation -->
+            <div class="payment-step-content" id="step4">
+                <div class="confirmation-content">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Order Confirmed!</h2>
+                    <p>Your order has been successfully placed.</p>
+                    <div class="order-details">
+                        <h3>Order Details</h3>
+                        <div class="order-detail">
+                            <span>Order Number:</span>
+                            <span>ORD-2025-001</span>
+                        </div>
+                        <div class="order-detail">
+                            <span>Order Date:</span>
+                            <span>March 1, 2025</span>
+                        </div>
+                        <div class="order-detail">
+                            <span>Total Amount:</span>
+                            <span>$12.50</span>
+                        </div>
+                        <div class="order-detail">
+                            <span>Payment Method:</span>
+                            <span>Credit Card</span>
+                        </div>
+                        <div class="order-detail">
+                            <span>Estimated Completion:</span>
+                            <span>March 3, 2025</span>
+                        </div>
+                    </div>
+                    <p class="confirmation-message">We've sent a confirmation email to your registered email address.
+                        You can track your order status in your account dashboard.</p>
+                    <div class="confirmation-buttons">
+                        <button class="btn-secondary"
+                            onclick="window.location.href='/upload_document/{{unique_url}}'">Back to Again</button>
+                        <button class="btn-primary" onclick="window.location.href='/'">Track Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2>Smart<span>DocX</span></h2>
+                <p>Smart Document Printing Solutions</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Document Printing</a></li>
+                    <li><a href="#">Copying Services</a></li>
+                    <li><a href="#">Binding & Finishing</a></li>
+                    <li><a href="#">Delivery Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form id="newsletterForm">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn-primary">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SmartDocX. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/scripts/upload_doc.js"></script>
+</body>
+
+</html>

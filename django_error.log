@@ -1,0 +1,586 @@
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 236, in dashboard
+    orders_table = get_owner_orders_table(owner_unique_url)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'get_owner_orders_table' is not defined
+"GET /dashboard/ HTTP/1.1" 500 145
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 236, in dashboard
+    orders_table = get_owner_orders_table(owner_unique_url)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'get_owner_orders_table' is not defined
+"GET /dashboard/ HTTP/1.1" 500 145
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 236, in dashboard
+    orders_table = get_owner_orders_table(owner_unique_url)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'get_owner_orders_table' is not defined
+"GET /dashboard/ HTTP/1.1" 500 145
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 236, in dashboard
+    orders_table = get_owner_orders_table(owner_unique_url)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'get_owner_orders_table' is not defined
+"GET /dashboard/ HTTP/1.1" 500 145
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 350, in dashboard
+    orders_and_revenue.to_json("orders_and_revenue.json", orient="records")
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'to_json'
+"GET /dashboard/ HTTP/1.1" 500 82900
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 368, in dashboard
+    for order in orders_table:
+                 ^^^^^^^^^^^^
+NameError: name 'orders_table' is not defined. Did you mean: 'order_table'?
+"GET /dashboard/ HTTP/1.1" 500 80075
+Internal Server Error: /print_order/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 499, in print_order
+    file_path = os.path.join(settings.MEDIA_ROOT, order.document)  # Construct full file path
+  File "<frozen ntpath>", line 139, in join
+  File "<frozen genericpath>", line 188, in _check_arg_types
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'FieldFile'
+"POST /print_order/ HTTP/1.1" 500 79654
+Internal Server Error: /print_order/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 499, in print_order
+    file_path = os.path.join(settings.MEDIA_ROOT, order.document)  # Construct full file path
+  File "<frozen ntpath>", line 139, in join
+  File "<frozen genericpath>", line 188, in _check_arg_types
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'FieldFile'
+"POST /print_order/ HTTP/1.1" 500 79648
+Internal Server Error: /print_order/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 499, in print_order
+    file_path = os.path.join(settings.MEDIA_ROOT, order.document)  # Construct full file path
+  File "<frozen ntpath>", line 139, in join
+  File "<frozen genericpath>", line 188, in _check_arg_types
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'FieldFile'
+"POST /print_order/ HTTP/1.1" 500 79654
+Internal Server Error: /print_order/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 499, in print_order
+    file_path = os.path.join(settings.MEDIA_ROOT, order.document)  # Construct full file path
+  File "<frozen ntpath>", line 139, in join
+  File "<frozen genericpath>", line 188, in _check_arg_types
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'FieldFile'
+"POST /print_order/ HTTP/1.1" 500 79654
+Internal Server Error: /print/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 501, in print_document
+    print('This is file path of printer function : ', file_path)
+                                                      ^^^^
+NameError: name 'file' is not defined
+"POST /print/ HTTP/1.1" 500 72862
+Internal Server Error: /print/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 501, in print_document
+    print('This is file path of printer function : ', file_path)
+                                                      ^^^^
+NameError: name 'file' is not defined
+"POST /print/ HTTP/1.1" 500 72862
+Internal Server Error: /print/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 501, in print_document
+    print('This is file path of printer function : ', file_path)
+                                                      ^^^^
+NameError: name 'file' is not defined
+"POST /print/ HTTP/1.1" 500 72862
+Internal Server Error: /print-document/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 539, in print_document
+    file_path = request.POST("file_path")
+TypeError: 'QueryDict' object is not callable
+"POST /print-document/ HTTP/1.1" 500 68382
+Internal Server Error: /print-document/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 539, in print_document
+    file_path = request.POST("file_path")
+TypeError: 'QueryDict' object is not callable
+"POST /print-document/ HTTP/1.1" 500 68382
+Internal Server Error: /upload/ratan-555b8a9d/
+"POST /upload/ratan-555b8a9d/ HTTP/1.1" 500 144
+Internal Server Error: /upload/ratan-555b8a9d/
+"POST /upload/ratan-555b8a9d/ HTTP/1.1" 500 126
+Internal Server Error: /pay/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Python313\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\site-packages\urllib3\connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x0000021F8C809FD0>: Failed to resolve 'api.razorpay.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Python313\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.razorpay.com', port=443): Max retries exceeded with url: /v1/orders (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000021F8C809FD0>: Failed to resolve 'api.razorpay.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 866, in create_payment
+    payment_order = razorpay_client.order.create({
+        "amount": amount,
+        "currency": "INR",
+        "payment_capture": 1
+    })
+  File "C:\Python313\Lib\site-packages\razorpay\resources\order.py", line 71, in create
+    return self.post_url(url, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\razorpay\resources\base.py", line 20, in post_url
+    return self.client.post(url, data, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\razorpay\client.py", line 156, in post
+    return self.request('post', path, data=data, **options)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\razorpay\client.py", line 120, in request
+    response = getattr(self.session, method)(url, auth=self.auth,
+                                             verify=self.cert_path,
+                                             **options)
+  File "C:\Python313\Lib\site-packages\requests\sessions.py", line 637, in post
+    return self.request("POST", url, data=data, json=json, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python313\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Python313\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.razorpay.com', port=443): Max retries exceeded with url: /v1/orders (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000021F8C809FD0>: Failed to resolve 'api.razorpay.com' ([Errno 11001] getaddrinfo failed)"))
+"POST /pay/ HTTP/1.1" 500 145
+Internal Server Error: /pay/
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Python313\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\site-packages\urllib3\connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x0000021F8CC46350>: Failed to resolve 'api.razorpay.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Python313\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Python313\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.razorpay.com', port=443): Max retries exceeded with url: /v1/orders (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000021F8CC46350>: Failed to resolve 'api.razorpay.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 866, in create_payment
+    payment_order = razorpay_client.order.create({
+        "amount": amount,
+        "currency": "INR",
+        "payment_capture": 1
+    })
+  File "C:\Python313\Lib\site-packages\razorpay\resources\order.py", line 71, in create
+    return self.post_url(url, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\razorpay\resources\base.py", line 20, in post_url
+    return self.client.post(url, data, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\razorpay\client.py", line 156, in post
+    return self.request('post', path, data=data, **options)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\razorpay\client.py", line 120, in request
+    response = getattr(self.session, method)(url, auth=self.auth,
+                                             verify=self.cert_path,
+                                             **options)
+  File "C:\Python313\Lib\site-packages\requests\sessions.py", line 637, in post
+    return self.request("POST", url, data=data, json=json, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python313\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Python313\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.razorpay.com', port=443): Max retries exceeded with url: /v1/orders (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000021F8CC46350>: Failed to resolve 'api.razorpay.com' ([Errno 11001] getaddrinfo failed)"))
+"POST /pay/ HTTP/1.1" 500 145
