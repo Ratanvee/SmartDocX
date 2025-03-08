@@ -477,43 +477,112 @@ import subprocess
 import os
 import time
 
+# def get_pdf_page_count(file_path):
+#     """Get the number of pages in a PDF file using Ghostscript (Linux-Compatible)."""
+#     gs_command = [
+#         "gs",  # Use 'gs' instead of 'gswin64c.exe' for Linux
+#         "-q", "-dNODISPLAY", "-c",
+#         f"({file_path}) (r) file runpdfbegin pdfpagecount = quit"
+#     ]
+    
+#     try:
+#         result = subprocess.run(gs_command, capture_output=True, text=True)
+#         return int(result.stdout.strip()) if result.returncode == 0 else None
+#     except Exception:
+#         return None
+
+# def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
+#     """Print a PDF with custom settings using Ghostscript on Linux"""
+    
+#     gs_command = [
+#         "gs",  # Use 'gs' instead of 'gswin64c.exe'
+#         "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",
+#         f"-sOutputFile={file_path}_printed.pdf",  # Save output instead of printing
+#         file_path
+#     ]
+
+#     # Set Black & White mode
+#     if color_mode == "bw":
+#         gs_command.insert(-1, "-sColorConversionStrategy=Gray")
+#         gs_command.insert(-1, "-dProcessColorModel=/DeviceGray")
+
+#     # Set Duplex mode
+#     if duplex == "double":
+#         gs_command.insert(-1, "-dDuplex=true")
+#     elif duplex == "single":
+#         gs_command.insert(-1, "-dDuplex=false")
+
+#     # Run the command
+#     subprocess.run(gs_command, shell=True)
+
+
+import subprocess
+import os
+
 def get_pdf_page_count(file_path):
     """Get the number of pages in a PDF file using Ghostscript (Linux-Compatible)."""
+    
+    if not os.path.exists(file_path):
+        print(f"Error: File not found - {file_path}")
+        return None
+
     gs_command = [
         "gs",  # Use 'gs' instead of 'gswin64c.exe' for Linux
-        "-q", "-dNODISPLAY", "-c",
-        f"({file_path}) (r) file runpdfbegin pdfpagecount = quit"
+        "-q", "-dSAFER", "-dNOPAUSE", "-dBATCH", 
+        "-sDEVICE=pdfwrite",  # Fix: Use a headless PDF device
+        "-sOutputFile=/dev/null",  # Fix: Discard output to prevent X display errors
+        "-c", f"({file_path}) (r) file runpdfbegin pdfpagecount = quit"
     ]
     
     try:
         result = subprocess.run(gs_command, capture_output=True, text=True)
-        return int(result.stdout.strip()) if result.returncode == 0 else None
-    except Exception:
+        if result.returncode == 0 and result.stdout.strip().isdigit():
+            return int(result.stdout.strip())
+        else:
+            print(f"Error reading PDF page count: {result.stderr}")
+            return None
+    except Exception as e:
+        print(f"Exception in get_pdf_page_count: {e}")
         return None
 
+
 def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
-    """Print a PDF with custom settings using Ghostscript on Linux"""
+    """Print a PDF with custom settings using Ghostscript on Linux."""
     
+    if not os.path.exists(file_path):
+        print(f"Error: File not found - {file_path}")
+        return False
+
+    output_file = f"{file_path}_printed.pdf"
+
     gs_command = [
         "gs",  # Use 'gs' instead of 'gswin64c.exe'
-        "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",
-        f"-sOutputFile={file_path}_printed.pdf",  # Save output instead of printing
+        "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",  # Fix: Headless mode
+        f"-sOutputFile={output_file}",
         file_path
     ]
 
     # Set Black & White mode
     if color_mode == "bw":
-        gs_command.insert(-1, "-sColorConversionStrategy=Gray")
-        gs_command.insert(-1, "-dProcessColorModel=/DeviceGray")
+        gs_command.extend(["-sColorConversionStrategy=Gray", "-dProcessColorModel=/DeviceGray"])
 
     # Set Duplex mode
     if duplex == "double":
-        gs_command.insert(-1, "-dDuplex=true")
+        gs_command.append("-dDuplex=true")
     elif duplex == "single":
-        gs_command.insert(-1, "-dDuplex=false")
+        gs_command.append("-dDuplex=false")
 
-    # Run the command
-    subprocess.run(gs_command, shell=True)
+    try:
+        result = subprocess.run(gs_command, capture_output=True, text=True)
+        if result.returncode == 0:
+            print(f"PDF processed successfully: {output_file}")
+            return True
+        else:
+            print(f"Error processing PDF: {result.stderr}")
+            return False
+    except Exception as e:
+        print(f"Exception in print_pdf: {e}")
+        return False
 
 
 # def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
