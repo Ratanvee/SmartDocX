@@ -545,7 +545,7 @@ def get_pdf_page_count(file_path):
 #     subprocess.run(gs_command, shell=True)
 import os
 # import win32print
-import win32api
+# import win32api
 
 # Get Django settings
 from django.conf import settings
@@ -559,7 +559,7 @@ def print_pdf(file_path, printer_name="Canon LBP2900"):
         return
 
     # Send the file to the printer
-    win32api.ShellExecute(0, "print", f'"{absolute_path}"', None, ".", 0)
+    # win32api.ShellExecute(0, "print", f'"{absolute_path}"', None, ".", 0)
 
 # Example Usage:
 # print_pdf('/user_uploads/ratan-ef18ed52/Acknowledgement.pdf')
@@ -622,37 +622,37 @@ def print_with_ghostscript(file_path):
     """Prints a PDF using Ghostscript, allowing the user to select a printer."""
 
     # List all available printers
-    printers = list_printers()
-    if not printers:
-        print("No printers found!")
-        return
+    # printers = list_printers()
+    # if not printers:
+    #     print("No printers found!")
+    #     return
 
-    print("Available Printers:")
-    for i, p in enumerate(printers, 1):
-        print(f"{i}. {p}")
-    choice = int(input("Select a printer (Enter the number): ")) - 1
-    printer_name = printers[choice]
+    # print("Available Printers:")
+    # for i, p in enumerate(printers, 1):
+    #     print(f"{i}. {p}")
+    # choice = int(input("Select a printer (Enter the number): ")) - 1
+    # printer_name = printers[choice]
 
-    print(f"Selected Printer: {printer_name}")
+    # print(f"Selected Printer: {printer_name}")
     print("Printing File:", file_path)
 
     # ✅ Fix the Ghostscript path issue by wrapping it in quotes
     ghostscript_path = r'"C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"'  # Wrapped in double quotes
 
-    command = [
-        ghostscript_path,
-        "-sDEVICE=mswinpr2",
-        f"-sOutputFile=%printer%{printer_name}",
-        "-dNOPAUSE",
-        "-dBATCH",
-        f'"{file_path}"',  # Wrap file path in quotes too
-    ]
+    # command = [
+    #     ghostscript_path,
+    #     "-sDEVICE=mswinpr2",
+    #     f"-sOutputFile=%printer%{printer_name}",
+    #     "-dNOPAUSE",
+    #     "-dBATCH",
+    #     f'"{file_path}"',  # Wrap file path in quotes too
+    # ]
 
-    try:
-        subprocess.run(" ".join(command), shell=True, check=True)  # Join command as a string
-        print(f"Printing {file_path} on {printer_name}.")
-    except subprocess.CalledProcessError as e:
-        print(f"Error printing document: {e}")
+    # try:
+    #     subprocess.run(" ".join(command), shell=True, check=True)  # Join command as a string
+    #     print(f"Printing {file_path} on {printer_name}.")
+    # except subprocess.CalledProcessError as e:
+    #     print(f"Error printing document: {e}")
 
 
 
