@@ -8,6 +8,67 @@
     <link rel="stylesheet" href="/static/styles/home.css">
     <link rel="stylesheet" href="/static/styles/upload_doc.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+<style>
+    .button {
+        border-radius: 0 5px 5px 0;
+        background-color: #f4511e;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 18px;
+        padding: 10px 15px;
+        height: 45px;
+        width: 150px;
+        transition: all 0.4s;
+        cursor: pointer;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        font-size: 16px;
+        transition: 0.5s;
+        height: 100%; /* Ensures span takes full button height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 50%;
+        right: -20px;
+        transform: translateY(-50%);
+        transition: 0.4s;
+    }
+    
+    .button:hover {
+        background-color: #e63900;
+    }
+    
+    .button:hover span {
+        padding-right: 20px;
+    }
+    
+    .button:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+    
+    /* Ensure the input field does not change size */
+    #amount {
+        height: 45px;
+        transition: none !important;
+    }
+    </style>
 </head>
 
 <body>
@@ -73,9 +134,10 @@
                         <i class="fas fa-cloud-upload-alt"></i>
                         <h3>Drag & Drop Files Here</h3>
                         <p>or</p>
-                        <label for="fileUpload" class="btn-primary">Browse Files</label>
-                        {% comment %} <input type="file" id="fileUpload" name="file" hidden> {% endcomment %}
-                        <input type="file" id="fileInput" multiple accept="application/pdf">
+                        <!-- <label for="fileUpload" class="btn-primary">Browse Files</label> -->
+                        <label for="fileInput" class="btn-primary">Browse Files</label>
+                        <input type="file" id="fileInput" multiple accept="application/pdf" hidden>
+                        <!-- <input type="file" id="fileUpload" multiple accept="application/pdf" hidden> -->
 
                         <p class="upload-info">Supported formats: PDF, DOCX, JPG, PNG (Max: 20MB per file)</p>
                     </div>
@@ -86,9 +148,75 @@
                         </ul>
                     </div>
 
+                    <script>
+                        
+    // File upload
+    const uploadArea = document.getElementById('uploadArea');
+    // const fileInput = document.getElementById('fileUpload');
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+
+    if (uploadArea && fileInput && fileList) {
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', () => {
+            handleFiles(fileInput.files);
+        });
+
+        function handleFiles(files) {
+            for (let file of files) {
+                const fileItem = document.createElement('li');
+                fileItem.innerHTML = `
+                    <div class="file-info">
+                        <i class="fas fa-file file-icon"></i>
+                        <div>
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-size">${formatFileSize(file.size)}</div>
+                        </div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="remove-file"><i class="fas fa-times"></i></button>
+                    </div>
+                `;
+                fileList.appendChild(fileItem);
+
+                fileItem.querySelector('.remove-file').addEventListener('click', () => {
+                    fileItem.remove();
+                });
+            }
+        }
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes < 1024) return bytes + ' bytes';
+        else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+        else return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+
+                    </script>
+
                 </div>
-                <label>Number of Pages:</label>
-                <input type="number" id="pageCount" readonly>
+                <!-- <label>Number of Pages:</label>
+                <input type="number" id="pageCount" readonly> -->
+                <div class="form-group">
+                    <label>Number of Pages:</label>
+                    <input disabled type="number" placeholder="AutoCount" id="pageCount" readonly>
+                </div>
                 <div class="options-form">
                     <div class="form-group">
                         <label for="paperSize">Paper Size</label>
@@ -138,51 +266,38 @@
                     <p id="orderIdDisplay"></p>
                     <div class="form-group">
                         <label for="copies">Number of Copies</label>
-                        <input type="number" name="copies" id="copies" min="1" value="1">
+                        <input type="number" name="copies" id="copies" min="1" value="1" onchange="calculateCost()">
                     </div>
 
                     <div class="form-group">
                         <label for="amount">Amount</label>
-                        <div class="input-group" style="position: relative;
-                        display: flex;
-                        flex-wrap: wrap;
-                        align-items: stretch;
-                        width: 100%;">
-                            <span class="input-group-text" style="display: flex;
+                        <div class="input-group" style="display: flex; align-items: center; width: 100%;">
+                            <span class="input-group-text" style="
+                                display: flex;
                                 align-items: center;
-                                padding: .375rem .75rem;
-                                font-size: 1rem;
-                                font-weight: 400;
-                                line-height: 1.5;
-                                text-align: center;
-                                white-space: nowrap;
+                                justify-content: center;
+                                padding: 10px 15px;
+                                font-size: 1.2rem;
                                 background-color: rgb(205, 205, 205);
                                 border: 0;
-                                border-radius: 5px 0 0px 5px;">
+                                border-radius: 5px 0 0px 5px;
+                                height: 45px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                     class="bi bi-currency-rupee" viewBox="0 0 16 16">
-                                    <path
-                                        d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z">
-                                    </path>
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"></path>
                                 </svg>
                             </span>
                             <input type="number" class="form-control" id="amount" name="amount" placeholder="00.0"
-                                required readonly disabled style="position: relative;
-                                flex: 1 1 auto;
-                                width: 1%;
-                                min-width: 0;
-                                border-radius: 0px;" />
-                            <button type="button" style="width: 100px;
-                            border-radius: 0px 5px 5px 0px;
-                            border: 1px;
-                            font-size: 18px;" id="pay">Pay Now</button>
-                            <style>
-                                #pay:hover {
-                                    font-size: 25px;
-                                }
-                            </style>
-
+                                required readonly disabled style="
+                                flex: 1; 
+                                min-width: 0; 
+                                border-radius: 0px; 
+                                height: 45px;" />
+                            <button class="button" type="button" id="pay">
+                                <span>Pay Now</span>
+                            </button>
                         </div>
+                    </div>
                     </div>
                     <input type="text" id="transaction_id" value="none" hidden>
                     <input type="text" id="unique_url" value="{{ unique_url }}" hidden>
@@ -237,6 +352,7 @@
                     let printType = document.getElementById("printColor").value;  // B/W or Color
                     let sideType = document.getElementById("printSides").value;  // Single or Double
                     let bindingType = document.getElementById("binding").value;  // Binding options
+                    let copies = document.getElementById("copies").value;  // No of copies 
 
                     let costPerPage = 0;
 
@@ -255,6 +371,9 @@
                     } else if (bindingType === "hardcover") {
                         totalCost += 50;  // Hardcover binding cost
                     }
+                    
+                    totalCost = totalCost * copies;
+                    
                     console.log("This is total cost : ", totalCost)
                     // alert("This is total cost of document : ", totalCost)
 
@@ -268,6 +387,13 @@
                 // submitOrder.disabled = true;
                 // submitOrder.style.display = "none";
                 document.addEventListener("DOMContentLoaded", function () {
+                    const hamburger = document.querySelector(".hamburger");
+                    const navLinks = document.querySelector(".nav-links");
+
+                    hamburger.addEventListener("click", () => {
+                        navLinks.classList.toggle("active");
+                        hamburger.classList.toggle("active");
+                     });
                     document.getElementById("submitOrder").addEventListener("click", function (event) {
                         event.preventDefault();
 

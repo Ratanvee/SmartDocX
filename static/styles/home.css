@@ -88,6 +88,8 @@ img {
 .btn-secondary:hover {
     background-color: var(--primary-color);
     color: var(--light-color);
+    /* color: white; */
+    /* color: red; */
     transform: translateY(-2px);
 }
 

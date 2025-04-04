@@ -111,7 +111,15 @@
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+    });
     // Step navigation
     const nextButtons = document.querySelectorAll('.next-step');
     const prevButtons = document.querySelectorAll('.prev-step');
@@ -158,62 +166,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // File upload
-    const uploadArea = document.getElementById('uploadArea');
-    const fileInput = document.getElementById('fileUpload');
-    const fileList = document.getElementById('fileList');
+    // // File upload
+    // const uploadArea = document.getElementById('uploadArea');
+    // // const fileInput = document.getElementById('fileUpload');
+    // const fileInput = document.getElementById('fileInput');
+    // const fileList = document.getElementById('fileList');
 
-    if (uploadArea && fileInput && fileList) {
-        uploadArea.addEventListener('click', () => fileInput.click());
+    // if (uploadArea && fileInput && fileList) {
+    //     uploadArea.addEventListener('click', () => fileInput.click());
 
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
+    //     uploadArea.addEventListener('dragover', (e) => {
+    //         e.preventDefault();
+    //         uploadArea.classList.add('dragover');
+    //     });
 
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
+    //     uploadArea.addEventListener('dragleave', () => {
+    //         uploadArea.classList.remove('dragover');
+    //     });
 
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        });
+    //     uploadArea.addEventListener('drop', (e) => {
+    //         e.preventDefault();
+    //         uploadArea.classList.remove('dragover');
+    //         handleFiles(e.dataTransfer.files);
+    //     });
 
-        fileInput.addEventListener('change', () => {
-            handleFiles(fileInput.files);
-        });
+    //     fileInput.addEventListener('change', () => {
+    //         handleFiles(fileInput.files);
+    //     });
 
-        function handleFiles(files) {
-            for (let file of files) {
-                const fileItem = document.createElement('li');
-                fileItem.innerHTML = `
-                    <div class="file-info">
-                        <i class="fas fa-file file-icon"></i>
-                        <div>
-                            <div class="file-name">${file.name}</div>
-                            <div class="file-size">${formatFileSize(file.size)}</div>
-                        </div>
-                    </div>
-                    <div class="file-actions">
-                        <button class="remove-file"><i class="fas fa-times"></i></button>
-                    </div>
-                `;
-                fileList.appendChild(fileItem);
+    //     function handleFiles(files) {
+    //         for (let file of files) {
+    //             const fileItem = document.createElement('li');
+    //             fileItem.innerHTML = `
+    //                 <div class="file-info">
+    //                     <i class="fas fa-file file-icon"></i>
+    //                     <div>
+    //                         <div class="file-name">${file.name}</div>
+    //                         <div class="file-size">${formatFileSize(file.size)}</div>
+    //                     </div>
+    //                 </div>
+    //                 <div class="file-actions">
+    //                     <button class="remove-file"><i class="fas fa-times"></i></button>
+    //                 </div>
+    //             `;
+    //             fileList.appendChild(fileItem);
 
-                fileItem.querySelector('.remove-file').addEventListener('click', () => {
-                    fileItem.remove();
-                });
-            }
-        }
-    }
+    //             fileItem.querySelector('.remove-file').addEventListener('click', () => {
+    //                 fileItem.remove();
+    //             });
+    //         }
+    //     }
+    // }
 
-    function formatFileSize(bytes) {
-        if (bytes < 1024) return bytes + ' bytes';
-        else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-        else return (bytes / 1048576).toFixed(1) + ' MB';
-    }
+    // function formatFileSize(bytes) {
+    //     if (bytes < 1024) return bytes + ' bytes';
+    //     else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    //     else return (bytes / 1048576).toFixed(1) + ' MB';
+    // }
 
     // Payment tabs
     const paymentTabs = document.querySelectorAll('.payment-tab');

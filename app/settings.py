@@ -95,7 +95,7 @@ RAZORPAY_KEY_SECRET = "bGXfYVQxNO85Rjn7MlNWohsc"
 
 
 # DEBUG = False
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ["*"]  # Set to your domain or localhost
 
 import os
@@ -154,10 +154,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Only in development
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Only for production
 # DEBUG = True
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # import os
+import os
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -203,8 +206,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'

@@ -370,6 +370,35 @@ def dashboard(request):
         }
         for order in orders
     ]
+    orders_and_revenue = {
+    "today": {
+        "labels": ["8 AM", "10 AM", "12 PM", "2 PM"],
+        "current": {"revenue": [100, 200, 150, 300], "orders": [5, 10, 8, 15]},
+        "previous": {"revenue": [80, 150, 120, 250], "orders": [3, 7, 6, 12]}
+    },
+    "week": {
+        "labels": ["Mon", "Tue", "Wed", "Thu"],
+        "current": {"revenue": [500, 600, 550, 700], "orders": [25, 30, 28, 35]},
+        "previous": {"revenue": [400, 550, 500, 650], "orders": [20, 27, 25, 30]}
+    },
+    "month": {
+        "labels": ["Week 1", "Week 2", "Week 3", "Week 4"],
+        "current": {"revenue": [2000, 2400, 2300, 2800], "orders": [100, 120, 110, 130]},
+        "previous": {"revenue": [1800, 2200, 2100, 2600], "orders": [90, 110, 100, 120]}
+    },
+    "year": {
+        "labels": ["Jan", "Feb", "Mar", "Apr"],
+        "current": {"revenue": [8000, 8500, 8700, 9000], "orders": [400, 420, 430, 450]},
+        "previous": {"revenue": [7500, 8000, 8200, 8500], "orders": [380, 400, 410, 430]}
+    },
+    "all_time": {
+        "labels": ["2019", "2020", "2021", "2022", "2023"],
+        "current": {"revenue": [50000, 55000, 60000, 65000, 70000], "orders": [2500, 2700, 3000, 3200, 3500]},
+        "previous": {"revenue": [45000, 50000, 55000, 60000, 65000], "orders": [2300, 2500, 2800, 3000, 3300]}
+    }
+}
+
+
     # print("Order Table:", order_table)
     # Print table format
     # print("Orders Table:")
@@ -380,7 +409,7 @@ def dashboard(request):
 
 
 
-    orders_and_revenue = get_orders_and_revenue_by_period(owner_unique_url)
+    # orders_and_revenue = get_orders_and_revenue_by_period(owner_unique_url)
     # print("Orders and Revenue by Period:", orders_and_revenue)
     # orders_and_revenue.to_json("orders_and_revenue.json", orient="records")
     # json_data = json.dumps(orders_and_revenue)
@@ -477,113 +506,19 @@ import subprocess
 import os
 import time
 
-# def get_pdf_page_count(file_path):
-#     """Get the number of pages in a PDF file using Ghostscript (Linux-Compatible)."""
-#     gs_command = [
-#         "gs",  # Use 'gs' instead of 'gswin64c.exe' for Linux
-#         "-q", "-dNODISPLAY", "-c",
-#         f"({file_path}) (r) file runpdfbegin pdfpagecount = quit"
-#     ]
-    
-#     try:
-#         result = subprocess.run(gs_command, capture_output=True, text=True)
-#         return int(result.stdout.strip()) if result.returncode == 0 else None
-#     except Exception:
-#         return None
-
-# def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
-#     """Print a PDF with custom settings using Ghostscript on Linux"""
-    
-#     gs_command = [
-#         "gs",  # Use 'gs' instead of 'gswin64c.exe'
-#         "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",
-#         f"-sOutputFile={file_path}_printed.pdf",  # Save output instead of printing
-#         file_path
-#     ]
-
-#     # Set Black & White mode
-#     if color_mode == "bw":
-#         gs_command.insert(-1, "-sColorConversionStrategy=Gray")
-#         gs_command.insert(-1, "-dProcessColorModel=/DeviceGray")
-
-#     # Set Duplex mode
-#     if duplex == "double":
-#         gs_command.insert(-1, "-dDuplex=true")
-#     elif duplex == "single":
-#         gs_command.insert(-1, "-dDuplex=false")
-
-#     # Run the command
-#     subprocess.run(gs_command, shell=True)
-
-
-import subprocess
-import os
-GS_PATH = "/tmp/ghostscript/gs"  # Use the new path
 def get_pdf_page_count(file_path):
-    """Get the number of pages in a PDF file using Ghostscript (Linux-Compatible)."""
-    
-    if not os.path.exists(file_path):
-        print(f"Error: File not found - {file_path}")
-        return None
-
+    """Get the number of pages in a PDF file using Ghostscript."""
     gs_command = [
-        GS_PATH,
-        "-q", "-dSAFER", "-dNOPAUSE", "-dBATCH",
-        "-sDEVICE=pdfwrite",
-        "-sOutputFile=/dev/null",
-        "-c", f"({file_path}) (r) file runpdfbegin pdfpagecount = quit"
+        "C:\\Program Files\\gs\\gs10.04.0\\bin\\gswin64c.exe",
+        "-q", "-dNODISPLAY", "-c",
+        f"({file_path}) (r) file runpdfbegin pdfpagecount = quit"
     ]
     
     try:
         result = subprocess.run(gs_command, capture_output=True, text=True)
-        if result.returncode == 0 and result.stdout.strip().isdigit():
-            return int(result.stdout.strip())
-        else:
-            print(f"Error reading PDF page count: {result.stderr}")
-            return None
-    except Exception as e:
-        print(f"Exception in get_pdf_page_count: {e}")
+        return int(result.stdout.strip()) if result.returncode == 0 else None
+    except Exception:
         return None
-
-
-def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
-    """Print a PDF with custom settings using Ghostscript on Linux."""
-    
-    if not os.path.exists(file_path):
-        print(f"Error: File not found - {file_path}")
-        return False
-
-    output_file = f"{file_path}_printed.pdf"
-
-    gs_command = [
-        "gs",  # Use 'gs' instead of 'gswin64c.exe'
-        "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",  # Fix: Headless mode
-        f"-sOutputFile={output_file}",
-        file_path
-    ]
-
-    # Set Black & White mode
-    if color_mode == "bw":
-        gs_command.extend(["-sColorConversionStrategy=Gray", "-dProcessColorModel=/DeviceGray"])
-
-    # Set Duplex mode
-    if duplex == "double":
-        gs_command.append("-dDuplex=true")
-    elif duplex == "single":
-        gs_command.append("-dDuplex=false")
-
-    try:
-        result = subprocess.run(gs_command, capture_output=True, text=True)
-        if result.returncode == 0:
-            print(f"PDF processed successfully: {output_file}")
-            return True
-        else:
-            print(f"Error processing PDF: {result.stderr}")
-            return False
-    except Exception as e:
-        print(f"Exception in print_pdf: {e}")
-        return False
-
 
 # def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
 #     """Print a PDF with custom settings using Ghostscript on Windows"""
@@ -608,29 +543,234 @@ def print_pdf(file_path, printer_name="", color_mode="color", duplex="single"):
 
 #     # Run the command
 #     subprocess.run(gs_command, shell=True)
+import os
+import win32print
+import win32api
+
+# Get Django settings
+from django.conf import settings
+
+def print_pdf(file_path, printer_name="Canon LBP2900"):
+    # Convert the relative path to an absolute path
+    absolute_path = os.path.join(settings.MEDIA_ROOT, file_path.lstrip("/"))
+
+    if not os.path.exists(absolute_path):
+        print(f"Error: File '{absolute_path}' not found!")
+        return
+
+    # Send the file to the printer
+    win32api.ShellExecute(0, "print", f'"{absolute_path}"', None, ".", 0)
+
+# Example Usage:
+# print_pdf('/user_uploads/ratan-ef18ed52/Acknowledgement.pdf')
+
+
+import os
+# import win32print
+# import win32api
+
+
+
+
+import subprocess
+# import win32print
+
+import subprocess
+import win32print
+
+
+def list_printers():
+    """Lists all available printers."""
+    printers = [printer[2] for printer in win32print.EnumPrinters(2)]
+    return printers
+
+import subprocess
+
+import subprocess
+
+def print_with_ghostscript1(file_path, printer_name="Canon LBP2900"):
+    """Prints a PDF using Ghostscript on Canon LBP2900."""
+    ghostscript_path = r"C:\Program Files\gs\gs10.01.0\bin\gswin64c.exe"  # Update if needed
+    print("Ghostscript Path:", ghostscript_path)
+    print("File Path Ghost :", file_path)
+
+    command = [
+        ghostscript_path,
+        "-sDEVICE=mswinpr2",
+        f"-sOutputFile=%printer%{printer_name}",
+        "-dNOPAUSE",
+        "-dBATCH",
+        file_path,
+    ]
+
+    try:
+        subprocess.run(command, check=True)
+        print(f"Printing {file_path} on {printer_name}.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error printing document: {e}")
+
+# Example Usage
+# file_path = r"C:\Users\Ratan\Documents\test.pdf"  # Update with the correct file path
+# print_with_ghostscript(file_path)
+
+# Example Usage
+# file_path = r"C:\Users\Ratan\Documents\test.pdf"
+# print_with_ghostscript(file_path)
+
+
+def print_with_ghostscript(file_path):
+    """Prints a PDF using Ghostscript, allowing the user to select a printer."""
+
+    # List all available printers
+    printers = list_printers()
+    if not printers:
+        print("No printers found!")
+        return
+
+    print("Available Printers:")
+    for i, p in enumerate(printers, 1):
+        print(f"{i}. {p}")
+    choice = int(input("Select a printer (Enter the number): ")) - 1
+    printer_name = printers[choice]
+
+    print(f"Selected Printer: {printer_name}")
+    print("Printing File:", file_path)
+
+    # ✅ Fix the Ghostscript path issue by wrapping it in quotes
+    ghostscript_path = r'"C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"'  # Wrapped in double quotes
+
+    command = [
+        ghostscript_path,
+        "-sDEVICE=mswinpr2",
+        f"-sOutputFile=%printer%{printer_name}",
+        "-dNOPAUSE",
+        "-dBATCH",
+        f'"{file_path}"',  # Wrap file path in quotes too
+    ]
+
+    try:
+        subprocess.run(" ".join(command), shell=True, check=True)  # Join command as a string
+        print(f"Printing {file_path} on {printer_name}.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error printing document: {e}")
+
+
+
+
+# def print_documents(file_path, printer_name="Canon LBP2900"):
+#     """
+#     Print a document based on its file type.
+#     Supported formats: PDF, Word (.docx), Image, Text
+#     """
+#     print("This is file Path of print documents function  : ", file_path)
+#     ghostscript_path = r"C:\\Program Files\\gs\\gs10.01.0\\bin\\gswin64c.exe"  # Update if needed
+#     # ghostscript_path = "C:\\Program Files\\gs\\gs10.04.0\\bin\\gswin64c.exe"
+
+#     command = [
+#         ghostscript_path,
+#         "-sDEVICE=mswinpr2",
+#         f"-sOutputFile=%printer%{printer_name}",
+#         "-dNOPAUSE",
+#         "-dBATCH",
+#         file_path,
+#     ]
+
+#     try:
+#         subprocess.run(command, check=True)
+#         print(f"Printing {file_path} on {printer_name}.")
+#     except subprocess.CalledProcessError as e:
+#         print(f"Error printing document: {e}")
+# Example Usage
+# file_path = "C:\\Users\\ratan\\OneDrive\\Desktop\\PrintEase\\SmartDocX\\media\\user_uploads\\ratan-ef18ed52\\Acknowledgement.pdf"
+# print_documents(file_path)
+
+
+
+
+
+
+
+
+# Example usage
+# print_pdf("C:\\path\\to\\your\\file.pdf")
+
+
+
 
 from django.http import JsonResponse
 import subprocess
 import time
 
+# def print_document(request):
+#     if request.method == "POST":
+#         # file_path = request.POST.get("file_path")
+#         # file_path = request.POST("file_path")
+#         # print("This is file path : ", file_path)
+#         data = json.loads(request.body)  # Read JSON data
+#         file_path = data.get("file_path", "")
+
+#         print("Received File Path:", file_path)  # Debugging
+#         file_path = file_path.replace("/", "\\")
+#         print("Formatted File Path:", file_path)  # Debugging
+
+#         if not file_path:
+#             return JsonResponse({"error": "File path is missing!"}, status=400)
+
+#         try:
+#             start_time = time.time()
+
+#             # Call print function
+#             # print_pdf(file_path)
+#             file_path = "C:\\Users\\ratan\\OneDrive\\Desktop\\PrintEase\\SmartDocX" + file_path
+#             print("This is file path 2: ", file_path)
+#             # print_documents(file_path)
+#             print_with_ghostscript(file_path)
+
+
+#             end_time = time.time()
+#             estimated_time = round(end_time - start_time, 2)
+
+#             return JsonResponse({"message": "Print request sent successfully!", "estimated_time": estimated_time})
+
+#         except Exception as e:
+#             return JsonResponse({"error": "This is error : "+ str(e)}, status=500)
+
+#     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+import json
+import os
+import subprocess
+import time
+import win32print
+
+from django.http import JsonResponse
+
+
 def print_document(request):
     if request.method == "POST":
-        # file_path = request.POST.get("file_path")
-        # file_path = request.POST("file_path")
-        # print("This is file path : ", file_path)
-        data = json.loads(request.body)  # Read JSON data
-        file_path = data.get("file_path", "")
-
-        print("Received File Path:", file_path)  # Debugging
-
-        if not file_path:
-            return JsonResponse({"error": "File path is missing!"}, status=400)
-
         try:
+            data = json.loads(request.body)  # Read JSON data
+            file_path = data.get("file_path", "")
+
+            if not file_path:
+                return JsonResponse({"error": "File path is missing!"}, status=400)
+
+            # ✅ Construct the correct absolute file path
+            file_path = "C:\\Users\\ratan\\OneDrive\\Desktop\\PrintEase\\SmartDocX" + file_path
+            file_path = file_path.replace("/", "\\")  # Fix path slashes for Windows
+
+            print("Final Absolute File Path:", file_path)
+
+            # ✅ Ensure file exists
+            if not os.path.exists(file_path):
+                return JsonResponse({"error": f"File '{file_path}' not found!"}, status=404)
+
             start_time = time.time()
 
             # Call print function
-            print_pdf(file_path)  
+            # print_with_ghostscript(file_path)
+            print("Printing file ..................................")
+            # print_with_ghostscript1(file_path)
 
             end_time = time.time()
             estimated_time = round(end_time - start_time, 2)
@@ -638,10 +778,9 @@ def print_document(request):
             return JsonResponse({"message": "Print request sent successfully!", "estimated_time": estimated_time})
 
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
+            return JsonResponse({"error": f"An error occurred: {str(e)}"}, status=500)
 
     return JsonResponse({"error": "Invalid request method"}, status=405)
-
 
 
 from django.shortcuts import render, redirect
@@ -965,7 +1104,47 @@ def create_payment(request):
         return JsonResponse(payment_order)
     
 
+import random
 
+def exitstingshops(request):
+    addresses = [
+        "Malout GT Road",
+        "Muktsar GT Road",
+        "Bathinda Main Market",
+        "Ferozepur Bus Stand",
+        "Ludhiana Mall Road",
+        "Patiala Railway Station",
+        "Amritsar Golden Temple Road",
+        "Jalandhar City Center",
+        "Chandigarh Sector 17",
+        "Mohali Industrial Area"
+    ]
+
+    pricing_options = [
+        "₹5 per page (B/W), ₹10 per page (Color)",
+        "₹4 per page (B/W), ₹8 per page (Color)",
+        "₹6 per page (B/W), ₹12 per page (Color)",
+        "₹3 per page (B/W), ₹7 per page (Color)",
+        "₹5 per page (B/W), ₹9 per page (Color)"
+    ]
+    
+    shops = CustomUser.objects.all()
+
+    shop_data = []
+    for shop in shops:
+        random_address = random.choice(addresses)  # Assigning different addresses
+        random_pricing = random.choice(pricing_options)  # Assigning different pricing
+        shop_data.append({
+            'shopID': shop.unique_url,
+            'owner_name': shop.username,
+            'address': random_address,  
+            'pricing': random_pricing,  
+            'upload_link': f"/upload/{shop.unique_url}/",  
+        })
+    
+    print("This is shops data : ", shop_data)
+    
+    return render(request, 'users/exitstingshops.html', {'shops': shop_data})
 
 
 
