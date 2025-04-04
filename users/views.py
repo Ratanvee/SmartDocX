@@ -544,7 +544,7 @@ def get_pdf_page_count(file_path):
 #     # Run the command
 #     subprocess.run(gs_command, shell=True)
 import os
-import win32print
+# import win32print
 import win32api
 
 # Get Django settings
@@ -576,13 +576,13 @@ import subprocess
 # import win32print
 
 import subprocess
-import win32print
+# import win32print
 
 
-def list_printers():
-    """Lists all available printers."""
-    printers = [printer[2] for printer in win32print.EnumPrinters(2)]
-    return printers
+# def list_printers():
+#     """Lists all available printers."""
+#     printers = [printer[2] for printer in win32print.EnumPrinters(2)]
+#     return printers
 
 import subprocess
 
@@ -741,7 +741,7 @@ import json
 import os
 import subprocess
 import time
-import win32print
+# import win32print
 
 from django.http import JsonResponse
 
