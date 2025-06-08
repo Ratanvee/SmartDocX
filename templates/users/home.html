@@ -13,6 +13,45 @@
     </style>
 </head>
 <body>
+    <h2>SmartDocX WebSocket Live Data</h2>
+    <p id="status">Connecting...</p>
+    <input type="text" id="messageInput" placeholder="Type a message" />
+    <button onclick="sendMessage()">Send</button>
+    <h3>Live Server Data:</h3>
+    <div id="dataContainer">
+        <p><strong>Time:</strong> <span id="time">--</span></p>
+        <p><strong>Update Count:</strong> <span id="count">--</span></p>
+        <p><strong>Message:</strong> <span id="serverMessage">--</span></p>
+    </div>
+
+    <script>
+        const socket = new WebSocket('ws://' + window.location.host + '/ws/notifications/');
+
+        socket.onopen = function() {
+            document.getElementById("status").innerText = "✅ Connected";
+        };
+
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            document.getElementById("time").textContent = data.timestamp || "--";
+            document.getElementById("count").textContent = data.count || "--";
+            document.getElementById("serverMessage").textContent = data.message || data.response || "--";
+        };
+
+        socket.onclose = function() {
+            document.getElementById("status").innerText = "❌ Disconnected";
+        };
+
+        function sendMessage() {
+            const msg = document.getElementById("messageInput").value;
+            socket.send(JSON.stringify({ message: msg }));
+        }
+
+        // Update frontend data every 3 seconds
+        // setInterval(() => {
+            // This is handled via WebSocket, no need for extra polling unless you want to fetch from REST API
+        // }, 3000);
+    </script>
     <header>
         <nav class="navbar">
             <div class="logo">

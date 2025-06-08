@@ -1037,3 +1037,520 @@ Internal Server Error: /print-document/
 "POST /print-document/ HTTP/1.1" 500 86
 Internal Server Error: /print-document/
 "POST /print-document/ HTTP/1.1" 500 86
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 481, in dashboard
+    return render(request, "users/dashboard.html", {
+        "user": user,
+    ...<7 lines>...
+        "order_table": order_table
+    })
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 591: 'for'. Looking for one of: empty, endfor.
+"GET /dashboard/ HTTP/1.1" 500 212540
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 481, in dashboard
+    return render(request, "users/dashboard.html", {
+        "user": user,
+    ...<7 lines>...
+        "order_table": order_table
+    })
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 591: 'for'. Looking for one of: empty, endfor.
+"GET /dashboard/ HTTP/1.1" 500 210621
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 481, in dashboard
+    return render(request, "users/dashboard.html", {
+        "user": user,
+    ...<7 lines>...
+        "order_table": order_table
+    })
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 600: 'for'. Looking for one of: empty, endfor.
+"GET /dashboard/ HTTP/1.1" 500 209994
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 481, in dashboard
+    return render(request, "users/dashboard.html", {
+        "user": user,
+    ...<7 lines>...
+        "order_table": order_table
+    })
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 600: 'for'. Looking for one of: empty, endfor.
+"GET /dashboard/ HTTP/1.1" 500 209994
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 481, in dashboard
+    return render(request, "users/dashboard.html", {
+        "user": user,
+    ...<7 lines>...
+        "order_table": order_table
+    })
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 600: 'for'. Looking for one of: empty, endfor.
+"GET /dashboard/ HTTP/1.1" 500 209994
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 481, in dashboard
+    return render(request, "users/dashboard.html", {
+        "user": user,
+    ...<7 lines>...
+        "order_table": order_table
+    })
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 600: 'for'. Looking for one of: empty, endfor.
+"GET /dashboard/ HTTP/1.1" 500 209994
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 481, in dashboard
+    return render(request, "users/dashboard.html", {
+        "user": user,
+    ...<7 lines>...
+        "order_table": order_table
+    })
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 600: 'for'. Looking for one of: empty, endfor.
+"GET /dashboard/ HTTP/1.1" 500 209994
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 481, in dashboard
+    return render(request, "users/dashboard.html", {
+        "user": user,
+    ...<7 lines>...
+        "order_table": order_table
+    })
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 591: 'for'. Looking for one of: empty, endfor.
+"GET /dashboard/ HTTP/1.1" 500 210621
+Internal Server Error: /download-setup/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 1058, in download_installer
+    shop_id = user.shop.shop_id
+              ^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\utils\functional.py", line 253, in inner
+    return func(_wrapped, *args)
+AttributeError: 'CustomUser' object has no attribute 'shop'
+"GET /download-setup/ HTTP/1.1" 500 82385
+Internal Server Error: /download-setup/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 1060, in download_installer
+    print("This is user shop:", user.shop)
+                                ^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\utils\functional.py", line 253, in inner
+    return func(_wrapped, *args)
+AttributeError: 'CustomUser' object has no attribute 'shop'
+"GET /download-setup/ HTTP/1.1" 500 82483
+Internal Server Error: /download-setup/
+Traceback (most recent call last):
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\users\views.py", line 1060, in download_installer
+    print("This is user shop:", user.shop)
+                                ^^^^^^^^^
+  File "C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX\myenv\Lib\site-packages\django\utils\functional.py", line 253, in inner
+    return func(_wrapped, *args)
+AttributeError: 'CustomUser' object has no attribute 'shop'
+"GET /download-setup/ HTTP/1.1" 500 82478

@@ -94,6 +94,21 @@ RAZORPAY_KEY_ID = "rzp_test_IFaauhhkMT5JlL"
 RAZORPAY_KEY_SECRET = "bGXfYVQxNO85Rjn7MlNWohsc"
 
 
+# settings for websocket support 
+INSTALLED_APPS += ['channels']
+
+ASGI_APPLICATION = 'app.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        # Use Redis in production
+        # "BACKEND": "channels_redis.core.RedisChannelLayer",
+        # "CONFIG": {"hosts": [("127.0.0.1", 6379)]},
+    }
+}
+
+
 # DEBUG = False
 DEBUG = True
 ALLOWED_HOSTS = ["*"]  # Set to your domain or localhost
@@ -104,6 +119,23 @@ import os
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 # MEDIA_URL = "/media/"
 # MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
+import sys
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
 
 
 from pathlib import Path

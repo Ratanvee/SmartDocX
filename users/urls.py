@@ -5,7 +5,7 @@ from django.conf import settings
 # from django.conf.urls import handler404
 # from users.views import custom_404_view  # Import the custom view
 from django.urls import path, include
-from .views import register, login_view, user_logout, dashboard, upload_document, home, exitstingshops
+from .views import register, login_view, user_logout, dashboard, upload_document, home, exitstingshops, download_installer
 from .views import save_print_order, create_payment, verify_payment
 # handler404 = custom_404_view
 # from django.conf.urls import handler404
@@ -38,6 +38,7 @@ urlpatterns = [
     path("print-document/", print_document, name="print-document"),
     path("exitstingshops/", exitstingshops, name="exist-shops"),
     path('print/', print_document, name='print_document'),
+    path('download-setup/', download_installer, name='download_installer'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

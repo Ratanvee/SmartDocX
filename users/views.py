@@ -746,41 +746,94 @@ import time
 from django.http import JsonResponse
 
 
+# def print_document(request):
+#     if request.method == "POST":
+#         try:
+#             data = json.loads(request.body)  # Read JSON data
+#             file_path = data.get("file_path", "")
+
+#             if not file_path:
+#                 return JsonResponse({"error": "File path is missing!"}, status=400)
+
+#             # ✅ Construct the correct absolute file path
+#             file_path = "C:\\Users\\ratan\\OneDrive\\Desktop\\PrintEase\\SmartDocX" + file_path
+#             file_path = file_path.replace("/", "\\")  # Fix path slashes for Windows
+
+#             print("Final Absolute File Path:", file_path)
+
+#             # ✅ Ensure file exists
+#             if not os.path.exists(file_path):
+#                 return JsonResponse({"error": f"File '{file_path}' not found!"}, status=404)
+
+#             start_time = time.time()
+
+#             # Call print function
+#             # print_with_ghostscript(file_path)
+#             print("Printing file ..................................")
+#             # print_with_ghostscript1(file_path)
+
+#             end_time = time.time()
+#             estimated_time = round(end_time - start_time, 2)
+
+#             return JsonResponse({"message": "Print request sent successfully!", "estimated_time": estimated_time})
+
+#         except Exception as e:
+#             return JsonResponse({"error": f"An error occurred: {str(e)}"}, status=500)
+
+#     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+import os
+import json
+import time
+import win32api
+import win32print
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def print_document(request):
+    print("Inside print_document function")
     if request.method == "POST":
         try:
             data = json.loads(request.body)  # Read JSON data
             file_path = data.get("file_path", "")
+            print("This is file path : ", file_path)
+            file_path = file_path.replace("/", "\\")  # Fix path slashes for Windows
+            print("Formatted File Path:", file_path)  # Debugging
 
             if not file_path:
                 return JsonResponse({"error": "File path is missing!"}, status=400)
 
-            # ✅ Construct the correct absolute file path
-            file_path = "C:\\Users\\ratan\\OneDrive\\Desktop\\PrintEase\\SmartDocX" + file_path
-            file_path = file_path.replace("/", "\\")  # Fix path slashes for Windows
+            # Construct absolute path (adjust base folder as needed)
+            base_folder = r"C:\Users\ratan\OneDrive\Desktop\PrintEase\SmartDocX"
+            abs_path = os.path.join(base_folder, file_path.replace("/", "\\").lstrip("\\"))
 
-            print("Final Absolute File Path:", file_path)
+            print("Final Absolute File Path:", abs_path)
 
-            # ✅ Ensure file exists
-            if not os.path.exists(file_path):
-                return JsonResponse({"error": f"File '{file_path}' not found!"}, status=404)
+            if not os.path.exists(abs_path):
+                return JsonResponse({"error": f"File '{abs_path}' not found!"}, status=404)
 
+            # Start timing
             start_time = time.time()
 
-            # Call print function
-            # print_with_ghostscript(file_path)
+            # ✅ Send to printer using ShellExecute
+            # win32api.ShellExecute(0, "print", abs_path, None, ".", 0)
             print("Printing file ..................................")
-            # print_with_ghostscript1(file_path)
 
             end_time = time.time()
             estimated_time = round(end_time - start_time, 2)
 
-            return JsonResponse({"message": "Print request sent successfully!", "estimated_time": estimated_time})
+            return JsonResponse({
+                "message": "Print request sent successfully!",
+                "estimated_time": estimated_time
+            })
 
         except Exception as e:
             return JsonResponse({"error": f"An error occurred: {str(e)}"}, status=500)
 
     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
 
 
 from django.shortcuts import render, redirect
@@ -994,6 +1047,47 @@ def upload_document(request, unique_url):
 #     return render(request, 'users/upload.html', {'form': form, 'user': user, 'unique_url': unique_url, "key": settings.RAZORPAY_KEY_ID})
 
 
+
+import os
+import json
+from django.http import FileResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+
+@csrf_exempt
+def download_installer(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            shop_id = data.get("shop_id")
+
+            print("Received shop_id:", shop_id)
+
+            if not shop_id:
+                return JsonResponse({"error": "Missing shop_id"}, status=400)
+
+            # ✅ Define folders
+            base_setup_dir = os.path.join(settings.BASE_DIR, "SmartDocXSetupFiles")
+            config_dir = os.path.join(base_setup_dir, "printer-agent")
+            installer_path = os.path.join(base_setup_dir, "output", "SmartDocXSetup.exe")
+            config_path = os.path.join(config_dir, "config.json")
+
+            # ✅ Save config.json
+            os.makedirs(config_dir, exist_ok=True)
+            with open(config_path, "w") as f:
+                json.dump({"shop_id": shop_id}, f)
+
+            # ✅ Check and return .exe
+            if not os.path.exists(installer_path):
+                return JsonResponse({"error": "Installer file not found."}, status=404)
+
+            return FileResponse(open(installer_path, "rb"), as_attachment=True, filename="SmartDocXSetup.exe")
+
+        except Exception as e:
+            print("Error generating installer:", str(e))
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request method"}, status=405)
 
 
 
