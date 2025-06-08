@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2ebiy4$4@ji&tz02f-#cfvzn!o7z%q-ohk@rlx_4nd!ea#37up
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [".vercel.app"]
 
 # USE_TZ = True  # This should be True
 # TIME_ZONE = "Asia/Kolkata"  # Set to Indian time zone
